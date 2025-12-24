@@ -1,11 +1,7 @@
-from flask import Flask, request, render_template
-
-app = Flask(__name__)
-
 products = {
     1: {'name': 'Macbook Air 13', 'price': 82000, 'category': 'ноутбук'},
     2: {'name': 'Macbook Pro 15', 'price': 120000, 'category': 'ноутбук'},
-    3: {'name': 'iPhone 17', 'price': 150000, 'category': 'телефон'},
+	3: {'name': 'iPhone 17', 'price': 150000, 'category': 'телефон'},
     4: {'name': 'iPad Pro 12.9', 'price': 95000, 'category': 'планшет'},
     5: {'name': 'Apple Watch Ultra', 'price': 65000, 'category': 'часы'},
     6: {'name': 'Samsung Galaxy S25', 'price': 85000, 'category': 'телефон'},
@@ -18,33 +14,21 @@ products = {
 	13: {'name': 'PlayStation 4', 'price': 25000, 'category': 'игровая консоль'},
 }
 
+category = 'ноутбук'
 
-@app.route('/')
-def main():
-	category = request.args.get('category') # ноутбук
-	price = request.args.get('price')
-	if category: # ноутбук -> True
-		category_products = {}
-		print('Переданная категория:', category)
-		for id, product in products.items():
-			if product['category'] == category:
-				category_products[id] = product
-		return render_template('index.html', products=category_products)
-
-	if price:
-		pass
-		# Реализовать фильтр товаров по цене (цена передается как price=10000-25000)
-		# где 10000 мин цена и 25000 максимальная
-
-	return render_template('index.html', products=products)
+# category_products = {}
+# for id, product in products.items():
+# 	if product['category'] == category:
+# 		category_products[id] = product
+#
+# print(category_products)
 
 
-@app.route('/product/<int:id>')
-def detail_product(id):
-	product = products.get(id)
-	return render_template('detail.html', product=product)
 
 
-if __name__ == '__main__':
-	app.run(debug=True, host='0.0.0.0', port=3000)
+
+
+
+
+
 
